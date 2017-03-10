@@ -1,4 +1,4 @@
-FROM alpine:edge
+FROM alpine:3.5
 
 MAINTAINER avenus.pl
 
@@ -10,15 +10,11 @@ ENV HELLO_HOST=exemple.com
 # FIXME: Once the exim package is out of testing, update this!
 RUN  apk update && apk upgrade && apk add --no-cache --repository $REPOSITORY  exim
 
-RUN  \
-mkdir  /var/log/exim /usr/lib/exim /var/spool/exim && \
-ln -s /dev/stdout /var/log/exim/main && \
-ln -s /dev/stderr /var/log/exim/panic && \
-ln -s /dev/stderr /var/log/exim/reject && \
-chown -R exim: /var/log/exim /usr/lib/exim /var/spool/exim && \
-chmod 0755 /usr/sbin/exim 
+RUN mkdir  /var/log/exim /usr/lib/exim /var/spool/exim 
 
 COPY exim.conf /etc/exim
+
+VOLUME ["/var/log/exim"]
 
 EXPOSE 25
 
