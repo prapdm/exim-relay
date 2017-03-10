@@ -3,7 +3,8 @@ FROM alpine:edge
 MAINTAINER avenus.pl
 
 ENV RELAY_FROM_HOSTS=10.0.0.0/8:172.16.0.0/12:192.168.0.0/16 \ 
-REPOSITORY=http://dl-cdn.alpinelinux.org/alpine/edge/testing
+REPOSITORY=http://dl-cdn.alpinelinux.org/alpine/edge/testing \
+HELO_HOST=exemple.com
 
 
 # FIXME: Once the exim package is out of testing, update this!
