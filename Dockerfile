@@ -14,7 +14,9 @@ RUN  \
 mkdir  /var/log/exim /usr/lib/exim /var/spool/exim && \
 ln -s /dev/stdout /var/log/exim/main && \
 ln -s /dev/stderr /var/log/exim/panic && \
-ln -s /dev/stderr /var/log/exim/reject 
+ln -s /dev/stderr /var/log/exim/reject && \
+chown -R exim: /var/log/exim /usr/lib/exim /var/spool/exim && \
+chmod 0755 /usr/sbin/exim 
 
 COPY exim.conf /etc/exim
 
